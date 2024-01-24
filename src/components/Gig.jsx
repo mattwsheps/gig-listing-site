@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Gig.css";
 
 const Gig = (props) => {
+    const [isLiked, setLiked] = useState(false);
+
+    const handleButtonClick = () => {
+        setLiked(!isLiked);
+    };
+
     return (
         <div className="gig">
             <h3 className="band-name" data-testid="band-name">
@@ -21,6 +27,23 @@ const Gig = (props) => {
             <p className="location" data-testid="location">
                 {props.location}
             </p>
+            <button className="like-button" onClick={handleButtonClick}>
+                {isLiked ? (
+                    <img
+                        src="src/assets/Liked.jpg"
+                        width="40"
+                        height="40"
+                        alt="Full Heart"
+                    />
+                ) : (
+                    <img
+                        src="src/assets/Unliked.jpg"
+                        width="40"
+                        height="40"
+                        alt="Empty Heart"
+                    />
+                )}
+            </button>
         </div>
     );
 };
